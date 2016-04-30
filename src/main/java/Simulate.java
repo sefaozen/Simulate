@@ -71,6 +71,9 @@ public class Simulate {
         int firstHour=Integer.parseInt(tokens[0]);
         int firstMinute=Integer.parseInt(tokens[1]);
 
+        int check24Hour=firstHour;
+        int checkDay=0;
+
           terminal.add(data.get(0));
         data.remove(0);
 
@@ -116,18 +119,90 @@ public class Simulate {
             {
                 firstMinute= firstMinute %60;
                 firstHour++;
+                if(firstHour==24){
+                    firstHour=0;
+                    checkDay++;
+                }
+
             }
             for(int t=0; t < saved.size(); t++) {
                 String[] temp =saved.get(t).getArrivalTime().split(":");
-                int temphour=Integer.parseInt(temp[0]);
-                int tempminute=Integer.parseInt(temp[1]);
-                if(temphour==resultHour && tempminute==resultMinute) {
+                int tempHour=Integer.parseInt(temp[0]);
+                int tempMinute=Integer.parseInt(temp[1]);
+                if(tempHour==resultHour && tempMinute==resultMinute) {
                     saved.get(t).setTerminated(firstHour + ":" + firstMinute);
 
                 }
 
             }
-            //System.out.println(""+firstHour);
+
+            int cusNumber1=0,cusNumber2=0,cusNumber3=0;
+            if(firstHour == check24Hour+20)
+            {
+                check24Hour=firstHour;
+                    for(int i=0;i < saved.size(); i++ )
+                    {
+                        if(saved.get(i).getTerminated()!=null)
+                        {
+                            if(saved.get(i).getName().equals("Customer1"))
+                                cusNumber1++;
+                            if(saved.get(i).getName().equals("Customer2"))
+                                cusNumber2++;
+                            if(saved.get(i).getName().equals("Customer3"))
+                                cusNumber3++;
+                        }
+                    }
+                    if(cusNumber1 >= cusNumber2)
+                    {
+                        if(cusNumber1 >= cusNumber3)
+                        {
+                            if(cusNumber2>=cusNumber3)
+                            {
+                                System.out.println("Gold Customer is Customer 1 and He is served "+cusNumber1+" people");
+                                System.out.println("Silver Customer is Customer 2 and He is served "+cusNumber2+" people");
+                                System.out.println("Bronze Customer is Customer 3 and He is served "+cusNumber3+" people");
+                            }
+                            else {
+                                System.out.println("Gold Customer is Customer 1 and He is served "+cusNumber1+" people");
+                                System.out.println("Silver Customer is Customer 3 and He is served "+cusNumber3+" people");
+                                System.out.println("Bronze Customer is Customer 2 and He is served "+cusNumber2+" people");
+                            }
+                        }
+                        else{
+                                System.out.println("Gold Customer is Customer 3 and He is served " + cusNumber3 + " people");
+                                System.out.println("Silver Customer is Customer 1 and He is served " + cusNumber1 + " people");
+                                System.out.println("Bronze Customer is Customer 2 and He is served " + cusNumber2 + " people");
+
+                            }
+                     }
+                    else{
+                        if(cusNumber2 >= cusNumber3)
+                        {
+                            if(cusNumber1>=cusNumber3)
+                            {
+                                System.out.println("Gold Customer is Customer 2 and He is served "+cusNumber2+" people");
+                                System.out.println("Silver Customer is Customer 1 and He is served "+cusNumber1+" people");
+                                System.out.println("Bronze Customer is Customer 3 and He is served "+cusNumber3+" people");
+                            }
+                            else {
+                                System.out.println("Gold Customer is Customer 2 and He is served "+cusNumber2+" people");
+                                System.out.println("Silver Customer is Customer 3 and He is served "+cusNumber3+" people");
+                                System.out.println("Bronze Customer is Customer 1 and He is served "+cusNumber1+" people");
+                            }
+                        }
+                        else{
+                            System.out.println("Gold Customer is Customer 3 and He is served " + cusNumber3 + " people");
+                            System.out.println("Silver Customer is Customer 2 and He is served " + cusNumber2 + " people");
+                            System.out.println("Bronze Customer is Customer 1 and He is served " + cusNumber1 + " people");
+
+                        }
+
+
+                    }
+                }
+
+
+            }
 
             if (terminal.size()==0)
             {
@@ -143,12 +218,30 @@ public class Simulate {
 
 
             }
-
-
-        }
-
         data=saved;
 
+        tokens = data.get(0).getArrivalTime().split(":");
+        int hour=Integer.parseInt(tokens[0]);
+        int minute=Integer.parseInt(tokens[1]);
+        if(checkDay>0)
+        {
+            firstHour= firstHour+24-hour;
+        }
+        if(firstHour > hour+24)
+        {
+            System.out.println("The system over 24 hour");
+        }
+        else if(firstHour == hour+24)
+        {
+            if (firstMinute > minute)
+            {
+                System.out.println("The system doesn't over 24 hour");
+            }
+            else
+                System.out.println("The system over 24 hour");
+        }
+        else
+            System.out.println("The system doesn't over 24 hour");
     }
 
 

@@ -41,7 +41,12 @@ public class HashCard {
 
     }
 
-
+    /**
+     *
+     * @param stu student number
+     * @param aca academic number
+     * @return if the cards is same person, return true
+     */
     public boolean equals(int stu, int aca) {
 
         if(stu==0)

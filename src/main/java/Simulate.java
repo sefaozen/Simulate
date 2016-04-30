@@ -13,6 +13,7 @@ public class Simulate {
     private List<Customer> data;
 
 
+
     public Simulate() throws IOException {
 
         data=new ArrayList<Customer>();
@@ -62,11 +63,19 @@ public class Simulate {
         }
 
     }
+    public List<Customer> getData() {
+        return data;
+    }
 
-    public void runSimulate() throws IOException {
+    /**
+     * It runs system
+     */
+    public void runSimulate()  {
 
         List<Customer> saved=new ArrayList<Customer>(data);
+
         PriorityQueue terminal= new PriorityQueue();
+
         String[] tokens = data.get(0).getArrivalTime().split(":");
         int firstHour=Integer.parseInt(tokens[0]);
         int firstMinute=Integer.parseInt(tokens[1]);
@@ -229,19 +238,19 @@ public class Simulate {
         }
         if(firstHour > hour+24)
         {
-            System.out.println("The system over 24 hour");
+            System.out.println("\nThe system over 24 hour");
         }
         else if(firstHour == hour+24)
         {
             if (firstMinute > minute)
             {
-                System.out.println("The system doesn't over 24 hour");
+                System.out.println("\nThe system doesn't over 24 hour");
             }
             else
-                System.out.println("The system over 24 hour");
+                System.out.println("\nThe system over 24 hour");
         }
         else
-            System.out.println("The system doesn't over 24 hour");
+            System.out.println("\nThe system doesn't over 24 hour");
     }
 
 

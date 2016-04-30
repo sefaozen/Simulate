@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="HW07_SEFA_OZEN_121044009:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/HW07_SEFA_OZEN_121044009_jar</output-path>
+    <root id="archive" name="HW07_SEFA_OZEN_121044009.jar">
+      <element id="module-output" name="HW07_SEFA_OZEN_121044009" />
+    </root>
+  </artifact>
+</component>

@@ -7,8 +7,6 @@ public class Customer {
 
     private String name;
 
-
-
     private String terminated;
     private String arrivalTime;
     private String transaction;

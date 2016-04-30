@@ -14,10 +14,10 @@ public class Main {
 
         HashCard hashCard=new HashCard();
 
-       if( hashCard.equals(1790,12660))
-           System.out.println("Two cards belongs to the same asistant");
+       if( hashCard.equals(1792,11360))
+           System.out.println("\nTwo cards belongs to the same asistant");
         else
-           System.out.println("Two cards belongs to the different asistant");
+           System.out.println("\nTwo cards belongs to the different asistant");
 
 
     }

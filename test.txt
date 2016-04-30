@@ -1,0 +1,4 @@
+Arival Time     Service Time    Customer Type
+00:00           10              Customer 1
+00:05           11              Customer 3
+00:08           04              Customer 2
